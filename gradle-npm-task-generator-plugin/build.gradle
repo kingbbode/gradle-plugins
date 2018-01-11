@@ -13,7 +13,6 @@ repositories {
 
 dependencies {
     compile('com.moowork.gradle:gradle-node-plugin:1.2.0')
-    compileClasspath project(":gradle-npm-task-generator-plugin")
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
 

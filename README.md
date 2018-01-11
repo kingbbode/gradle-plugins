@@ -1,4 +1,4 @@
-# Kingbbode Gradle Plugins
+# Kingbbode Gradle Plugins (COMING SOON...)
 
 - Webpack Plugin
-- Querydsl Plugin
+- Npm Task Generator Plugin
