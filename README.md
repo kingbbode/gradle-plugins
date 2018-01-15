@@ -1,4 +1,18 @@
-# Kingbbode Gradle Plugins (COMING SOON...)
+# Kingbbode Gradle Plugins 
 
-- Webpack Plugin
-- Npm Task Generator Plugin
+### Npm Task Generator Plugin(COMING SOON...)
+
+#### Usage
+
+```
+buildscript {
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath 'com.github.kingbbode:gradle-npm-task-generator-plugin:1.0.0'
+  }
+}
+
+apply plugin: 'gradle-npm-task-generator-plugin'
+```
