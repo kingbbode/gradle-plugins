@@ -1,4 +1,4 @@
 rootProject.name = 'gradle-plugins'
-include 'gradle-webpack-plugin'
 include 'gradle-npm-task-generator-plugin'
+include 'demo'
 

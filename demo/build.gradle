@@ -1,0 +1,15 @@
+apply plugin: 'java'
+
+apply plugin: 'gradle-npm-task-generator-plugin'
+
+npmTasks {
+    webpackReal {
+        command = 'run real'
+        description = 'build webpack dev profile'
+        npmInstall = true
+    }
+    webpackDev {
+        command = 'run dev'
+        description = 'build webpack real profile'
+    }
+}

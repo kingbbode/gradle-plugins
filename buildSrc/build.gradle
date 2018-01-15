@@ -1,0 +1,11 @@
+apply plugin: 'groovy'
+
+apply from: '../gradle-npm-task-generator-plugin/build.gradle'
+
+
+sourceSets {
+    main {
+        groovy.srcDirs += '../gradle-npm-task-generator-plugin/src/main/groovy'
+        resources.srcDirs += '../gradle-npm-task-generator-plugin/src/main/resources'
+    }
+}

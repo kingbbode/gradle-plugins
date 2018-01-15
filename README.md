@@ -16,3 +16,33 @@ buildscript {
 
 apply plugin: 'gradle-npm-task-generator-plugin'
 ```
+
+#### Example
+
+```
+npmTasks {
+    webpackReal {
+        command = 'run real'
+        description = 'build webpack dev profile'
+    }
+    webpackDev {
+        command = 'run dev'
+        description = 'build webpack real profile'
+    }
+}
+```
+
+![example](./images/example.png)
+
+##### Option 
+
+```
+npmTasks {
+    name {
+        command = 'install' // npm install
+        description = '~~'
+        npmInstall = true // default false, this task dependsOn NpmInstallTask
+        dependsOn = '' // find task and dependsOn this task.
+    }
+}
+```
