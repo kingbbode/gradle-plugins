@@ -1,6 +1,6 @@
 # Kingbbode Gradle Plugins 
 
-### Npm Task Generator Plugin(COMING SOON...)
+### Npm Task Generator Plugin
 
 [ ![Download](https://api.bintray.com/packages/kingbbode/gradle-plugins/gradle-npm-task-generator-plugin/images/download.svg) ](https://bintray.com/kingbbode/gradle-plugins/gradle-npm-task-generator-plugin/_latestVersion)
 
@@ -9,7 +9,10 @@
 ```
 buildscript {
   repositories {
-    jcenter()
+    maven {
+        url  "https://dl.bintray.com/kingbbode/gradle-plugins" 
+    }
+    //jcenter()
   }
   dependencies {
     classpath 'com.github.kingbbode:gradle-npm-task-generator-plugin:1.0.0'
