@@ -2,6 +2,8 @@
 
 ### Npm Task Generator Plugin(COMING SOON...)
 
+[ ![Download](https://api.bintray.com/packages/kingbbode/gradle-plugins/gradle-npm-task-generator-plugin/images/download.svg) ](https://bintray.com/kingbbode/gradle-plugins/gradle-npm-task-generator-plugin/_latestVersion)
+
 #### Usage
 
 ```
@@ -24,10 +26,15 @@ npmTasks {
     webpackReal {
         command = 'run real'
         description = 'build webpack dev profile'
+        npmInstall = true
+        dependsOn = JavaPlugin.PROCESS_RESOURCES_TASK_NAME
+        
     }
     webpackDev {
         command = 'run dev'
         description = 'build webpack real profile'
+        npmInstall = true
+        dependsOn = JavaPlugin.PROCESS_RESOURCES_TASK_NAME
     }
 }
 ```

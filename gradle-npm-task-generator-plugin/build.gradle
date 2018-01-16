@@ -36,7 +36,7 @@ publishing {
         MyPublication(MavenPublication) {
             from components.java
             groupId project.group
-            artifactId 'gradle-npm-task-generator'
+            artifactId 'gradle-npm-task-generator-plugin'
             version project.version
             artifact javadocJar
             artifact sourcesJar
@@ -45,7 +45,7 @@ publishing {
                 def node = asNode()
                 node.children().last() + {
                     resolveStrategy = Closure.DELEGATE_FIRST
-                    name 'Gradle NPM Task Generator'
+                    name 'Gradle NPM Task Generator Plugin'
                     description 'Simple Generate NPM Task.'
                     url 'https://github.com/AntonioCappiello/date-utils'
 
@@ -79,7 +79,7 @@ bintray {
     publications = ['MyPublication']
     pkg {
         repo = 'gradle-plugins'
-        name = 'gradle-npm-task-generator'
+        name = 'gradle-npm-task-generator-plugin'
         version {
             name = project.version
         }
