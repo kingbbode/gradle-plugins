@@ -1,18 +1,94 @@
-group 'com.github.kingbbode'
-version '1.0-SNAPSHOT'
-
+plugins {
+    id "com.jfrog.bintray" version "1.7.3"
+}
 apply plugin: 'groovy'
 apply plugin: 'java-gradle-plugin'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+sourceCompatibility = 1.8
 
-repositories {
-    maven {
-        url "https://plugins.gradle.org/m2/"
+configurations {
+    javadocDeps
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+javadoc {
+    classpath += configurations.javadocDeps
+    options.addStringOption("sourcepath", "")
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+// add javadoc/source jar tasks as artifacts
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+publishing {
+    publications {
+        MyPublication(MavenPublication) {
+            from components.java
+            groupId project.group
+            artifactId 'gradle-npm-task-generator'
+            version project.version
+            artifact javadocJar
+            artifact sourcesJar
+
+            pom.withXml {
+                def node = asNode()
+                node.children().last() + {
+                    resolveStrategy = Closure.DELEGATE_FIRST
+                    name 'Gradle NPM Task Generator'
+                    description 'Simple Generate NPM Task.'
+                    url 'https://github.com/AntonioCappiello/date-utils'
+
+                    licenses {
+                        license {
+                            name 'The Apache Software License, Version 2.0'
+                            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id 'kingbbode'
+                            name 'YongGeun Kwon'
+                            email 'kingbbode@gmail.com'
+                        }
+                    }
+                    scm {
+                        connection 'https://github.com/kingbbode/gradle-plugins.git'
+                        developerConnection 'https://github.com/kingbbode/gradle-plugins.git'
+                        url 'https://github.com/kingbbode/gradle-plugins'
+                    }
+                }
+            }
+        }
     }
-    mavenCentral()
+}
+
+bintray {
+    user = 'kingbbode'
+    key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+    publications = ['MyPublication']
+    pkg {
+        repo = 'gradle-plugins'
+        name = 'gradle-npm-task-generator'
+        version {
+            name = project.version
+        }
+    }
 }
 
 dependencies {
     compile('com.moowork.gradle:gradle-node-plugin:1.2.0')
+    javadocDeps 'javax.portlet:portlet-api:2.0'
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
 

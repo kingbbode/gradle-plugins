@@ -1,2 +1,17 @@
-group 'com.github.kingbbode'
-version '1.0-SNAPSHOT'
+allprojects{
+    group 'com.github.kingbbode'
+    version '1.0'
+    buildscript {
+        repositories {
+            mavenCentral()
+            jcenter()
+        }
+    }
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        mavenCentral()
+        jcenter()
+    }
+}
